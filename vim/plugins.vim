@@ -343,3 +343,6 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 " VIM-COMMENTARY
 "===============================================================================
 autocmd FileType matlab setlocal commentstring=\%\ %s
+" Comment using // for c++
+autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
+

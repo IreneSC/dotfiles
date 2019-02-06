@@ -1,6 +1,3 @@
-" Comment using // for c++
-autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
-
 """"""""""""""""""""""""""""""
 " => Visual mode related
 """"""""""""""""""""""""""""""
