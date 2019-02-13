@@ -14,6 +14,15 @@ set smartindent " Intellegently dedent / indent new lines based on rules.
 
 autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 autocmd Filetype java   setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+autocmd Filetype xml    setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd Filetype yaml   setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+
+augroup ros_format
+    au!
+    autocmd BufEnter *.world  set filetype=xml
+    autocmd BufEnter *.launch set filetype=xml
+    autocmd BufEnter *.rviz   set filetype=yaml
+augroup end
 
 " We have VCS -- we don't need this stuff.
 set nobackup " We have vcs, we don't need backups.
@@ -36,8 +45,6 @@ set gdefault " use the `g` flag by default.
 set virtualedit+=block
 
 map <C-h> <C-w>
-
-colo desert
 
 " Easily find and replace current word
 nnoremap <Leader>s :%s/\<\(<C-r><C-w>\)\>//g<Left><Left>
@@ -117,10 +124,9 @@ set incsearch
 set magic
 
 " Show matching brackets when text indicator is over them
-set showmatch
+" set showmatch
 " How many tenths of a second to blink when matching brackets
-set mat=2
-
+set mat=1
 
 "" messages and info
 set shortmess=aoOstTI
@@ -130,6 +136,21 @@ set cursorline
 set report=0
 set noerrorbells
 set visualbell t_vb=
+
+" cursor settings
+" set guicursor=n-v-c:block-Cursor/lCursor,
+" set guicursor+=ve:ver35-Cursor,
+" set guicursor+=o:hor50-Cursor,
+" set guicursor=i-ci:hor10-Search
+" set guicursor+=i:blinkon0
+" set guicursor=i:hor10-Cursor/lCursor,
+" set guicursor+=r-cr:hor20-Cursor/lCursor,
+" set guicursor+=sm:block-Cursor-blinkwait175-blinkoff150-blinkon175"
+
+if &term =~ '^xterm\\|rxvt'
+  " solid underscore
+  let &t_SI .= "\<Esc>[4 q"
+endif
 
 autocmd GUIEnter * set visualbell t_vb=
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -194,3 +215,21 @@ endif
 
 "Set current working directory to change on window enter.
 autocmd BufEnter * silent! lcd %:p:h
+
+" Disable parentheses matching depends on system. This way we should address all cases (?)
+set noshowmatch
+" NoMatchParen " This doesnt work as it belongs to a plugin, which is only loaded _after_ all files are.
+" Trying disable MatchParen after loading all plugins
+
+if has('unix')
+    function! g:DisableMatchParen ()
+        if exists(":NoMatchParen")
+            :NoMatchParen
+        endif
+    endfunction
+
+    augroup plugin_initialize
+        autocmd!
+        autocmd VimEnter * call DisableMatchParen()
+    augroup END
+end
