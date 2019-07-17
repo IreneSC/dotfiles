@@ -11,8 +11,8 @@ vnoremap <silent> # :call VisualSelection('b')<CR>
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Treat long lines as break lines (useful when moving around in them)
-nnoremap j gj
-nnoremap k gk
+noremap j gk
+noremap k gj
 
 " Make Ctrl-backspace and Ctrl-delete work
 inoremap <C-H> <C-w>

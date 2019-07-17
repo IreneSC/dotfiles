@@ -1,13 +1,38 @@
 "===============================================================================
 " vim-plug plugin manager config.
 
+" if has('nvim')
+"     Plug 'lervag/vimtex'
+" end
+
 " Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
 call plug#begin('~/.vim/plugged')
 
 " Use single quotes for all arguments to Plug
 
+" Autocomplete
+" Plug 'ncm2/ncm2'
+" Plug 'roxma/nvim-yarp'
+Plug 'skywind3000/asyncrun.vim'
+Plug 'Shougo/neco-syntax'
+Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'Vimjas/vim-python-pep8-indent'
+
+" NOTE: you need to install completion sources to get completions. Check
+" our wiki page for a list of sources: https://github.com/ncm2/ncm2/wiki
+
+Plug 'mhinz/neovim-remote'
+
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-tmux'
+Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-pyclang'
+Plug 'ncm2/ncm2-tmux'
+Plug 'ncm2/ncm2-syntax'
+Plug 'ncm2/ncm2-github'
+
 Plug 'vim-scripts/Align'
-"Plug 'godlygeek/tabular'
+Plug 'godlygeek/tabular'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -19,6 +44,7 @@ Plug 'tpope/vim-commentary'
 "Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-abolish'
 
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
@@ -34,6 +60,7 @@ Plug 'tmux-plugins/vim-tmux'
 Plug 'edkolev/tmuxline.vim'
 
 Plug 'vim-latex/vim-latex'
+Plug 'unblevable/quick-scope'
 
 " Plug 'vim-syntastic/syntastic'
 " Plugin outside ~/.vim/plugged with post-update hook
@@ -51,15 +78,6 @@ Plug 'vim-scripts/headerguard'
 " Plug 'zxqfl/tabnine-vim'
 " Plug 'ncm2/ncm2'
 " Plug 'roxma/nvim-yarp'
-" NOTE: you need to install completion sources to get completions. Check
-" our wiki page for a list of sources: https://github.com/ncm2/ncm2/wiki
-" Plug 'ncm2/ncm2-bufword'
-" Plug 'ncm2/ncm2-tmux'
-" Plug 'ncm2/ncm2-path'
-" Plug 'ncm2/ncm2-pyclang'
-" Plug 'ncm2/ncm2-tmux'
-" Plug 'ncm2/ncm2-syntax'
-" Plug 'ncm2/ncm2-github'
 " Plug 'autozimu/LanguageClient-neovim', {
 "     \ 'branch': 'next',
 "     \ 'do': 'bash install.sh',
@@ -350,3 +368,30 @@ autocmd FileType matlab setlocal commentstring=\%\ %s
 " Comment using // for c++
 autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
 
+"===============================================================================
+" VIM-NCM2
+"===============================================================================
+set completeopt=noinsert,menuone,noselect
+" autocmd BufEnter * call ncm2#enable_for_buffer()
+" au User Ncm2Plugin call ncm2#register_source({
+"         \ 'name' : 'css',
+"         \ 'priority': 9,
+"         \ 'subscope_enable': 1,
+"         \ 'scope': ['css','scss'],
+"         \ 'mark': 'css',
+"         \ 'word_pattern': '[\w\-]+',
+"         \ 'complete_pattern': ':\s*',
+"         \ 'on_complete': ['ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
+"         \ })
+" " Use <TAB> to select the popup menu:
+" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Latex specific
+autocmd BufWritePost *.tex :AsyncRun pdflatex *.tex
+" if has('nvim')
+"     let g:vimtex_compiler_progname = 'nvr'
+" end
+
+" Disable folds
+let g:Tex_Folding = 0

@@ -2,7 +2,7 @@
 filetype plugin indent on " Filetype auto-detection
 syntax on " Syntax highlighting
 
-" Default to 2 space tabs
+" Default to 4 space tabs
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
@@ -10,12 +10,15 @@ set expandtab " use spaces instead of tabs.
 set smarttab " let's tab key insert 'tab stops', and bksp deletes tabs.
 set shiftround " tab / shifting moves to closest tabstop.
 set autoindent " Match indents on new lines.
-set smartindent " Intellegently dedent / indent new lines based on rules.
+set cindent " Intellegently dedent / indent new lines based on rules.
 
 autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 autocmd Filetype java   setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 autocmd Filetype xml    setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype yaml   setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+
+" Make vim windows resize when the window resizes
+autocmd VimResized * wincmd =
 
 augroup ros_format
     au!
@@ -47,7 +50,7 @@ set virtualedit+=block
 map <C-h> <C-w>
 
 " Easily find and replace current word
-nnoremap <Leader>s :%s/\<\(<C-r><C-w>\)\>//g<Left><Left>
+nnoremap <Leader>s :%s/\<\(<C-r><C-w>\)\>//<Left>
 
 " Enable modeline for individual file specific settings"
 set modeline
@@ -217,7 +220,9 @@ endif
 autocmd BufEnter * silent! lcd %:p:h
 
 " Disable parentheses matching depends on system. This way we should address all cases (?)
-set noshowmatch
+if has('unix')
+    set noshowmatch
+end
 " NoMatchParen " This doesnt work as it belongs to a plugin, which is only loaded _after_ all files are.
 " Trying disable MatchParen after loading all plugins
 
