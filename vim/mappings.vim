@@ -105,10 +105,10 @@ nnoremap <Cr> o<Esc>
 " Ctrl + o - up one level
 " Ctrl + i - down one level
 nnoremap <C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
-nnoremap <A-\> :sp <CR>:exec("tag ".expand("<cword>"))<CR>
-nnoremap <A-]> :tabe <CR>:exec("tag ".expand("<cword>"))<CR>
-nnoremap <A-LeftMouse> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
-nnoremap <A-RightMouse> :sp <CR>:exec("tag ".expand("<cword>"))<CR>
+nnoremap <C-]> :tabe <CR>:exec("tag ".expand("<cword>"))<CR>
+" nnoremap <A-\> :sp <CR>:exec("tag ".expand("<cword>"))<CR>
+" nnoremap <A-LeftMouse> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+" nnoremap <A-RightMouse> :sp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 " Press Alt+u to convert current word to uppercase
 inoremap <A-u> <Esc>viwUi

@@ -297,8 +297,6 @@ silent! set guifont=Inconsolata:h12:cANSI
 "  silent! set guifont=Monospace\ 10
 "endif
 
-"Color Schemes
-silent colorscheme molokai
 
 "===============================================================================
 " Airline
@@ -367,6 +365,7 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 autocmd FileType matlab setlocal commentstring=\%\ %s
 " Comment using // for c++
 autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
+autocmd FileType ocaml set commentstring=(*\ %s\ *)
 
 "===============================================================================
 " VIM-NCM2
@@ -395,3 +394,10 @@ autocmd BufWritePost *.tex :AsyncRun pdflatex *.tex
 
 " Disable folds
 let g:Tex_Folding = 0
+
+" runtime plugin/RainbowParenthsis.vim 
+"Color Schemes
+silent colorscheme molokai
+hi Visual term=reverse cterm=reverse
+
+autocmd BufRead,BufNewFile *.launch setfiletype roslaunch

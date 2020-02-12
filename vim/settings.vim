@@ -12,10 +12,16 @@ set shiftround " tab / shifting moves to closest tabstop.
 set autoindent " Match indents on new lines.
 set cindent " Intellegently dedent / indent new lines based on rules.
 
-autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+if $MOBILE_ROBOTICS_MODE_ENABLED
+    autocmd Filetype python setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+else
+    autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+endif
+
 autocmd Filetype java   setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 autocmd Filetype xml    setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype yaml   setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd Filetype ocaml  setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 
 " Make vim windows resize when the window resizes
 autocmd VimResized * wincmd =
@@ -212,6 +218,8 @@ set lazyredraw
 ""20 command line editing
 set history=100
 
+" hi MatchParen cterm=bold ctermbg=green ctermfg=blue
+
 if has('arabic')
     set noarabicshape
 endif
@@ -223,6 +231,25 @@ autocmd BufEnter * silent! lcd %:p:h
 if has('unix')
     set noshowmatch
 end
+
+" A massively simplified take on https://github.com/chreekat/vim-paren-crosshairs
+" func! s:matchparen_cursorcolumn_setup()
+"   augroup matchparen_cursorcolumn
+"     autocmd!
+"     autocmd CursorMoved * if get(w:, "paren_hl_on", 0) | set cursorcolumn | else | set nocursorcolumn | endif
+"     autocmd InsertEnter * set nocursorcolumn
+"   augroup END
+" endf
+" if !&cursorcolumn
+"   augroup matchparen_cursorcolumn_setup
+"     autocmd!
+"     " - Add the event _only_ if matchparen is enabled.
+"     " - Event must be added _after_ matchparen loaded (so we can react to w:paren_hl_on).
+"     autocmd CursorMoved * if exists("#matchparen#CursorMoved") | call <sid>matchparen_cursorcolumn_setup() | endif
+"           \ | autocmd! matchparen_cursorcolumn_setup
+"   augroup END
+" endif
+
 " NoMatchParen " This doesnt work as it belongs to a plugin, which is only loaded _after_ all files are.
 " Trying disable MatchParen after loading all plugins
 
@@ -238,3 +265,14 @@ if has('unix')
         autocmd VimEnter * call DisableMatchParen()
     augroup END
 end
+
+set tags=tags;/
+
+" Highlight text > 80 characters as red
+au Filetype ocaml highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+au Filetype ocaml match OverLength /\%81v.\+/
+" if &filetype ==# 'ocaml'
+"     :echom "should work"
+" else
+"     :echom &filetype
+" end
