@@ -106,14 +106,20 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 alias my_tmux='tmux -f ~/.tmux.conf.no_autoload -L my_tmux'
-alias mr_source='source ~/catkin_ws/devel/setup.bash && export MOBILE_ROBOTICS_MODE_ENABLED=1'
+alias reattach='tmux -L my_tmux attach'
+alias old_mrs_source='source ~/catkin_ws/devel/setup.bash && export OLD_MOBILE_ROBOTICS_MODE_ENABLED=1'
+alias mrs_source='source ~/workspace/school/cambridge/mobile_robot_systems/localization/catkin_ws/devel/setup.bash && export MOBILE_ROBOTICS_MODE_ENABLED=1'
 alias cd_crt='cd ~/workspace/crt-system/catkin_ws/src/crt_system'
 alias cd_mrs='cd ~/catkin_ws/src/exercises'
 alias crt_tmux='cd_crt && my_tmux'
 alias gs='git status'
 alias gp='git push'
 alias gu='git add -u'
-alias gl='git log -n 5'
+alias ga='git add'
+alias gl='git log'
+alias gln='git log -n 5'
+alias gc='git commit'
+alias gd='git diff'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -153,9 +159,13 @@ export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib"
 # fi
 
 export PYTHONSTARTUP=~/.pythonrc
-if [ ! -z "$MOBILE_ROBOTICS_MODE_ENABLED" ]; then
+if [ ! -z "$OLD_MOBILE_ROBOTICS_MODE_ENABLED" ]; then
     echo "Sourcing mobile robotics systems ros"
     source ~/catkin_ws/devel/setup.bash
+fi
+if [ ! -z "$MOBILE_ROBOTICS_MODE_ENABLED" ]; then
+    echo "Sourcing mobile robotics systems ros"
+    source ~/workspace/school/cambridge/mobile_robot_systems/localization/catkin_ws/devel/setup.bash
 fi
 
 bind '"\C-H":""'

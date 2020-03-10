@@ -12,11 +12,11 @@ set shiftround " tab / shifting moves to closest tabstop.
 set autoindent " Match indents on new lines.
 set cindent " Intellegently dedent / indent new lines based on rules.
 
-if $MOBILE_ROBOTICS_MODE_ENABLED
-    autocmd Filetype python setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
-else
-    autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
-endif
+" if $MOBILE_ROBOTICS_MODE_ENABLED
+"     autocmd Filetype python setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+" else
+autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+" endif
 
 autocmd Filetype java   setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 autocmd Filetype xml    setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
