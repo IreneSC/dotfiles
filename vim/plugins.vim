@@ -62,6 +62,8 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'vim-latex/vim-latex'
 Plug 'unblevable/quick-scope'
 
+Plug 'JamshedVesuna/vim-markdown-preview'
+
 " Plug 'vim-syntastic/syntastic'
 " Plugin outside ~/.vim/plugged with post-update hook
 "Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -401,3 +403,10 @@ silent colorscheme molokai
 hi Visual term=reverse cterm=reverse
 
 autocmd BufRead,BufNewFile *.launch setfiletype roslaunch
+
+" Use github-flavored markdown for rendering
+let vim_markdown_preview_github=1
+let vim_markdown_preview_toggle=1
+
+let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips', 'UltiSnips']
+let g:UltiSnipsEditSplit="vertical"
