@@ -43,7 +43,7 @@ esac
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -57,16 +57,19 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    # PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u: \w\a\]$PS1"
+    # PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
     ;;
 *)
     ;;
@@ -105,6 +108,7 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+# Using tmux
 alias my_tmux='tmux -f ~/.tmux.conf.no_autoload -L my_tmux'
 alias reattach='tmux -L my_tmux attach'
 alias old_mrs_source='source ~/catkin_ws/devel/setup.bash && export OLD_MOBILE_ROBOTICS_MODE_ENABLED=1'
@@ -112,6 +116,8 @@ alias mrs_source='source ~/workspace/school/cambridge/mobile_robot_systems/local
 alias cd_crt='cd ~/workspace/crt-system/catkin_ws/src/crt_system'
 alias cd_mrs='cd ~/catkin_ws/src/exercises'
 alias crt_tmux='cd_crt && my_tmux'
+
+# Git aliases
 alias gs='git status'
 alias gp='git push'
 alias gu='git add -u'
@@ -120,6 +126,9 @@ alias gl='git log'
 alias gln='git log -n 5'
 alias gc='git commit'
 alias gd='git diff'
+
+# Honestly, why wouldn't I use xclip w/ my keyboard
+alias xclip='xclip -selection clipboard'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -138,7 +147,11 @@ xinput set-button-map 12 1 1 3 4 5 6 7 2> /dev/null
 
 export WORKON_HOME=~/Envs
 source ~/.local/bin/virtualenvwrapper.sh
-workon crt2.7
+if [ -z $VIRTUAL_ENV ]; then
+    workon crt2.7
+else
+    workon $(basename $VIRTUAL_ENV)
+fi
 # source ~/Envs/crt2.7/bin/activate
 source /opt/ros/melodic/setup.bash
 
@@ -172,3 +185,7 @@ bind '"\C-H":""'
 bind '"\e[1;5D" backward-word' 
 bind '"\e[1;5C" forward-word'
 bind '"\e[3;5~" kill-word'
+
+# export PS1="\u"
+
+export RASPI_IP=192.168.87.51
