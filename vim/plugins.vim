@@ -60,9 +60,10 @@ Plug 'tmux-plugins/vim-tmux'
 Plug 'edkolev/tmuxline.vim'
 
 Plug 'vim-latex/vim-latex'
-Plug 'unblevable/quick-scope'
+" Plug 'unblevable/quick-scope'
 
 Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'supercrabtree/vim-resurrect'
 
 " Plug 'vim-syntastic/syntastic'
 " Plugin outside ~/.vim/plugged with post-update hook
@@ -366,7 +367,7 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 "===============================================================================
 autocmd FileType matlab setlocal commentstring=\%\ %s
 " Comment using // for c++
-autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
+autocmd FileType c,cpp,cs,java,cfg setlocal commentstring=//\ %s
 autocmd FileType ocaml set commentstring=(*\ %s\ *)
 
 "===============================================================================
@@ -410,3 +411,13 @@ let vim_markdown_preview_toggle=1
 
 let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips', 'UltiSnips']
 let g:UltiSnipsEditSplit="vertical"
+
+"===============================================================================
+" VIM-RESURRECT
+"===============================================================================
+let g:resurrect_ignore_patterns = [
+    \  '/.git/',
+    \  'fugitive://',
+    \  '/undotree_2',
+    \  '/__CtrlSF__'
+    \]

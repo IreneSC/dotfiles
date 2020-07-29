@@ -268,7 +268,7 @@ end
 
 set tags=tags;/
 
-" Highlight text > 80 characters as red
+" Highlight text > 80 characters as red, but only in ocaml
 au Filetype ocaml highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 au Filetype ocaml match OverLength /\%81v.\+/
 " if &filetype ==# 'ocaml'
