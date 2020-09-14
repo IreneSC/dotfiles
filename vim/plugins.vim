@@ -60,7 +60,7 @@ Plug 'tmux-plugins/vim-tmux'
 Plug 'edkolev/tmuxline.vim'
 
 Plug 'vim-latex/vim-latex'
-" Plug 'unblevable/quick-scope'
+Plug 'unblevable/quick-scope'
 
 Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'supercrabtree/vim-resurrect'
