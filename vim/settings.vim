@@ -2,6 +2,7 @@
 filetype plugin indent on " Filetype auto-detection
 syntax on " Syntax highlighting
 
+set cc=80
 " Default to 4 space tabs
 set tabstop=4
 set shiftwidth=4
@@ -185,7 +186,6 @@ set noswapfile
 
 "Show the line numbers
 set number
-set relativenumber
 
 " Linebreak on 500 characters
 " set lbr

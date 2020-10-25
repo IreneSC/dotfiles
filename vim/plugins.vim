@@ -9,6 +9,7 @@
 call plug#begin('~/.vim/plugged')
 
 " Use single quotes for all arguments to Plug
+Plug 'pixelneo/vim-python-docstring'
 
 " Autocomplete
 " Plug 'ncm2/ncm2'
@@ -33,7 +34,6 @@ Plug 'ncm2/ncm2-github'
 
 Plug 'vim-scripts/Align'
 Plug 'godlygeek/tabular'
-Plug 'Lokaltog/vim-easymotion'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -344,23 +344,22 @@ let g:ale_c_clangtidy_checks = ['*', '-llvm-include-order', '-google-readability
 "===============================================================================
 " EASYMOTION
 "===============================================================================
-let g:EasyMotion_do_mapping = 0 " Disable default mappings
-map <Leader> <Plug>(easymotion-prefix)
 
-" <Leader>f{char} to move to {char}
-map  <Leader>f <Plug>(easymotion-bd-f)
-nmap <Leader>f <Plug>(easymotion-overwin-f)
 
-" s{char}{char} to move to {char}{char}
-nmap s <Plug>(easymotion-overwin-f2)
+" " <Leader>f{char} to move to {char}
+" map  <Leader>f <Plug>(easymotion-bd-f)
+" nmap <Leader>f <Plug>(easymotion-overwin-f)
 
-" Move to line
-map <Leader>L <Plug>(easymotion-bd-jk)
-nmap <Leader>L <Plug>(easymotion-overwin-line)
+" " s{char}{char} to move to {char}{char}
+" nmap s <Plug>(easymotion-overwin-f2)
 
-" Move to word
-map  <Leader>w <Plug>(easymotion-bd-w)
-nmap <Leader>w <Plug>(easymotion-overwin-w)
+" " Move to line
+" map <Leader>L <Plug>(easymotion-bd-jk)
+" nmap <Leader>L <Plug>(easymotion-overwin-line)
+
+" " Move to word
+" map  <Leader>w <Plug>(easymotion-bd-w)
+" nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 "===============================================================================
 " VIM-COMMENTARY
@@ -369,7 +368,6 @@ autocmd FileType matlab setlocal commentstring=\%\ %s
 " Comment using // for c++
 autocmd FileType c,cpp,cs,java,cfg setlocal commentstring=//\ %s
 autocmd FileType ocaml set commentstring=(*\ %s\ *)
-
 "===============================================================================
 " VIM-NCM2
 "===============================================================================

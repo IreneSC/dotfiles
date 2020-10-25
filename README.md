@@ -1,2 +1,2 @@
 # dotfiles
-Vim, tmux, and other configuration files (e.g. .vimrc)
+Vim configuration files (e.g. .vimrc)
